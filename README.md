@@ -1,4 +1,4 @@
-**configurar el .env nombre de bd munihelpdesk
+**configurar el .env nombre de bd incidencia
 **composer install
 **npm install
 **npm run dev
