@@ -29,8 +29,8 @@ class DispositivoController extends Controller
      */
     public function create()
     {
-        //
-        return view('dispositivos.create');
+        $oficinas = Oficina::all();
+        return view('dispositivos.create', compact('oficinas'));
 
     }
 
@@ -45,7 +45,6 @@ class DispositivoController extends Controller
         //
         $request->validate(
             [
-                'codpatri'=> 'required',
                 'descripcion'=> 'required',
                 'modelo'=> 'required',
                 'marca'=> 'required',
@@ -64,7 +63,7 @@ class DispositivoController extends Controller
         $pass = $request->input('pass');
 
 
-        $codpatri= $request->input('codpatri');
+        // $codpatri= $request->input('codpatri');
         $descripcion=$request->input('descripcion');
         $modelo=$request->input('modelo');
         $marca=$request->input('marca');
@@ -80,7 +79,6 @@ class DispositivoController extends Controller
 
         $dipositi = new Dispositivo();
 
-        $dipositi->codpatrominal = $codpatri;
         $dipositi->descripcion = $descripcion;
         $dipositi->modelo = $modelo;
         $dipositi->marca = $marca;

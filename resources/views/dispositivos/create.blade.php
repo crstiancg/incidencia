@@ -20,18 +20,6 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="codpatri" class="form-label">
-                                    Codigo Patrimonial
-                                <span style="color: red;">*</span>
-                                </label>
-                                <input type="text" class="form-control" name="codpatri">
-                                @error('codpatri')
-                                <span class="invalid-feedback">
-                                    <strong> {{$message}} </strong>
-                                </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-6 mb-3">
                                 <label for="descripcion" class="form-label">
                                     Descripción:
                                 <span style="color: red;">*</span></label>
@@ -145,13 +133,9 @@
                                     <span style="color: red;">*</span>
                                 </label>
                                 <select name="id_ofici" id="" class="form-control">
-                                    <option value="1" selected>LABORATORIO1</option>
-                                    <option value="2" >LABORATORIO2</option>
-                                    <option value="3" >LABORATORIO3</option>
-                                    <option value="4" >LABORATORIO4</option>
-                                    <option value="5" >LABORATORIO5</option>
-                                    <option value="6" >LABORATORIO6</option>
-                                    <option value="7" >LABORATORIO7</option>
+                                    @foreach ($oficinas as $oficina)
+                                    <option value="{{$oficina->id}}">{{$oficina->nombre_oficina}}</option>
+                                    @endforeach
                                 </select>
                             </div>  
                         </div>

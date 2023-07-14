@@ -1,19 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', 'Dispositivos')
+@section('title', 'Practicas')
 
 @section('content_header')
-<center>
-    <h1>DISPOSITIVOS</h1>
-</center>
+    <h1 class="text-center font-weight-bold text-uppercase">Gestión de Dispositivos</h1>
 @stop
 
 @section('content')
-    <a href=" {{ route('dispositivos.create') }} " class="btn btn-success mb-3">NUEVO DISPOSITIVO</a>
-    <div class="table-responsive">
-        <table id="dispositivos" class="table table-striped mt-2">
-            <thead>
-            <th>Cod PATRIMONIAL</th>
+<a class="btn btn-info mb-3" href="{{ route('dispositivos.create') }} ">Registrar Dispositivo</a>
+<div class="card">
+  <div class="card-body">
+    <table class="table table-striped text-center" id="tcategoria">
+      <thead class="thead-dark">
             <th>DESCRIPCIÓN</th>
             <th>MODELO</th>
             <th>MARCA</th>
@@ -25,11 +23,10 @@
             <th>OBSERVACIÓN</th>
             <th>AMBIENTE</th>
             <th>ACCIONES</th>
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
             @foreach ($dispositivos as $dispositivo)
                 <tr class="">
-                    <td> {{$dispositivo->codpatrominal}} </td>
                     <td> {{$dispositivo->descripcion}} </td>
                     <td> {{$dispositivo->modelo}} </td>
                     <td> {{$dispositivo->marca}} </td>
@@ -56,7 +53,7 @@
                     <td> {{$dispositivo->posicion}} </td>
                     <td> {{$dispositivo->observacion}} </td>
 
-                        <td><span class="badge bg-success" > LABORATORIO {{$dispositivo->oficina_id}} </span></td>
+                        <td><span class="badge bg-success" >{{$dispositivo->oficina->nombre_oficina}} </span></td>
 
                     <td>
                         <a href=" {{ route('dispositivos.edit', $dispositivo) }} " class="btn btn-primary">Editar</a>
@@ -64,23 +61,67 @@
                 </tr>
             @endforeach
             </tbody>
-        </table>
-    </div>
-
-@stop
-
-@section('css')
-    <link href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap4.min.css" rel="stylesheet"></link>
+    </table>
+  </div>
+</div>
 @stop
 
 @section('js')
-    <script>
-        $(document).ready(function () {
-            $('#dispositivos').DataTable();
-        });
-        $('#dispositivos').DataTable({
-            responsive: true,
-            autoWidth: false,
-        });
-    </script>
+
+@if(session('eliminar') == 'delete')
+<script>
+ Swal.fire(
+          '¡Eliminado!',
+          'El registro ha sido eliminado.',
+          'success'
+        )
+</script>
+@endif
+<script>
+  $('.eliminar').submit(function(e){
+    e.preventDefault();
+
+    Swal.fire({
+      title: '¿Estas seguro?',
+      text: "No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Si, eliminarlo!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.submit();
+      }
+    })
+
+  });
+
+  $('#tcategoria').DataTable({
+    responsive: true,
+    autoWidth: false,
+    "language": {
+          "lengthMenu": "Mostrar "+`
+          <select class="custom-select custom-select-sm form-control form-control-sm">
+            <option value="10">10</option> 
+            <option value="25">25</option> 
+            <option value="50">50</option> 
+            <option value="100">100</option> 
+            <option value="-1">All</option> 
+          </select>
+          `+" registros por paginas",
+          "zeroRecords": "Nada encontrado - lo siento",
+          "info": "Mostrando la pagina _PAGE_ de _PAGES_",
+          "infoEmpty": "No records available",
+          "infoFiltered": "(filtrado de _MAX_ registro total)",
+          "search":"Buscar: ",
+          "paginate":{
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+      }
+  });
+</script>
 @stop

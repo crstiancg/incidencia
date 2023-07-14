@@ -20,8 +20,8 @@ class RolSeeder extends Seeder
         //
         $roles=[
             'Administrador',
-            'Tecnico'
-            ];
+            'Tecnico',
+        ];
 
         foreach ($roles as $rol){
             //Role::create(['name'=>$rol]);

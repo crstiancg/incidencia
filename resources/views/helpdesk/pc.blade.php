@@ -91,7 +91,7 @@
                                             <div class="col">
                                                 <div class="form-floating mb-3">
                                                     <input type="text" readonly  class="form-control" name="oficina" id="oficina"  >
-                                                    <label for="oficina">Laboratorio:</label>
+                                                    <label for="oficina">Oficina:</label>
                                                 </div>
                                             </div>
                                             <div class="col">

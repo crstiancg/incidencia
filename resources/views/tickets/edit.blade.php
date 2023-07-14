@@ -22,19 +22,6 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="dni" class="form-label">
-                                    Número de DNI:
-                                    <span style="color: red;">*</span>
-                                </label>
-                                <input type="text" class="form-control" value="{{$ticket->persona->dni}}" name="dni">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="celular" class="form-label">
-                                    Celular:
-                                    <span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" value="{{$ticket->persona->celular}}" name="celular">
-                            </div>
-                            <div class="col-md-6 mb-3">
                                 <label for="incidencia" class="form-label">
                                     Incidencia:
                                     <span style="color: red;">*</span></label>
