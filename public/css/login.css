@@ -1,0 +1,10 @@
+body{
+    background: #f52516;
+    background: linear-gradient(to right, #0890ae, #000000);
+  }
+  
+  .bg {
+  
+      background: url("https://assets.hongkiat.com/uploads/minimalist-dekstop-wallpapers/4k/preview/05.jpg?3") no-repeat;
+      background-position: center center;
+  }
