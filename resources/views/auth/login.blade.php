@@ -30,7 +30,7 @@
                   </div>
                 {{-- <h2 class="fw-bold py-5 text-center">Bienvenido Code.org</h2> --}}
 
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login') }}" autocomplete="off">
                     @csrf
                     <div class="mb-4">
                         <label for="email" class="form-label">{{ __('Usuario') }}</label>
